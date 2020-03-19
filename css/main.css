@@ -37,6 +37,9 @@
   font-size:3em;
   text-align:center;
 }
+.box-shadow{
+  box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.75);
+}
 .footer {
   position: fixed;
   left: 0;
@@ -57,7 +60,6 @@ body{
 }
 button {
   background-color: tomato;
-  border-radius:2px;
   color: white;
   text-align: center;
   text-decoration: solid;
