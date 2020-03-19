@@ -2,11 +2,13 @@
   flex-basis:100%;
   display:flex;
   justify-content:space-around;
-  margin-top:5px;
+  margin-top:10px;
 
 }
 #container{
-    background-color:#8a6363;
+    margin:auto;
+    max-width: 400px;
+    background-color:#aaa;
     padding-bottom:30px;
     border-radius:80px 10px;
     font-family: monospace;
@@ -33,20 +35,26 @@
   font-size:3em;
   text-align:center;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #aaa;
+  color: white;
+  text-align: right;
+}
 .set-time{
   font-size: 1em;
   flex-basis:50%;
   text-align:center;
 }
-h1{
-  color:black;
-  text-decoration: none;
-}
 body{
   background-color:#484848
+
 }
 button {
-  background-color: tomato; 
+  background-color: tomato;
   border-radius:2px;
   color: white;
   text-align: center;
@@ -55,4 +63,12 @@ button {
 }
 div{
   color:white;
+}
+h1{
+  color:black;
+  text-decoration: none;
+}
+p{
+  font-family: monospace;
+  margin:5px 20px;
 }

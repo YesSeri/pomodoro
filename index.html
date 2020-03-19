@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8"/>
     <link rel='stylesheet' type='text/css' href='css/main.css'>
   </head>
   <body>
     <div id='container'>
       <div id='heading'>
-        <h1>My Timer</h1>
+        <h1>Timer</h1>
       </div>
       <div id='main'>
-        <div id='timer'>24:38
-        </div>
+        <div id='timer'>25:00</div>
         <div id='settings'>
           <div id='sessiontime' class="set-time">Work: 25:00</div>
           <div id='breaktime' class="set-time">Pause: 5:00</div>
           <div id='buttons'>
             <button id='start'>start</button>
-            <button id='stop'>stop</button>
+            <button id='pause'>pause</button>
             <button id='reset'>reset</button>
           </div>
         </div>
       </div>
     </div>
+    <div class="footer">
+      <p>henrik z</p>
+    </div>
+    <audio autoplay>   
+      <source src="gong.mp3" />   
+    </audio> 
     <script src='js/script.js'></script>
   </body>
 </html>

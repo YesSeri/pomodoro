@@ -1,40 +1,65 @@
-let countdown = 1500
-let timer = 0
-const start = document.querySelector("#start")
-const stop = document.querySelector('#stop')
-const reset = document.querySelector('#reset')
+const startButton = document.querySelector('#start')
+const pauseButton = document.querySelector('#pause')
+const resetButton = document.querySelector('#reset')
 
-start.addEventListener('click', e => {
-  if (timer<1){
-    timer = setInterval(myTimer, 1000)
-  }
+var audio = new Audio('gong.mp3');
+
+let timer = null
+let endTime = null
+let modeWork = true
+
+const countdownWork = 1500000
+const countdownPause = 300000
+let timeLeft = countdownWork
+
+startButton.addEventListener('click', function (e){
+  endTime= new Date().getTime()+timeLeft
+  timer = setInterval(myTimer, 1000)
+  document.getElementById("heading").innerHTML = `<h1>Work</h1>`;
+})
+pauseButton.addEventListener('click', function (e){
+  clearInterval(timer)
+  document.getElementById("heading").innerHTML = `<h1>Pause</h1>`;
+})
+resetButton.addEventListener('click', function (e){
+  clearInterval(timer)
+  timeLeft = countdownWork
+  modeWork = true
+  setTime(countdownWork)
+  document.getElementById("heading").innerHTML = `<h1>Timer</h1>`;
 })
 
-stop.addEventListener('click', e => {
-    clearInterval(timer)
-})
-
-reset.addEventListener('click', e => {
-    countdown = 1500
-    setText()
-})
-
-function myTimer (){
-  setText()
-  if (countdown){
-    countdown--
-  }else {
-    clearInterval(timer)
+function myTimer(){ 
+  const now = new Date().getTime()
+  timeLeft = endTime-now+500
+  setTime(timeLeft)
+  if (timeLeft < 0 && modeWork == true){
+    document.getElementById("heading").innerHTML = `<h1>Rest</h1>`;
+    setMode()
+  }else if (timeLeft < 0 && modeWork == false){
+    document.getElementById("heading").innerHTML = `<h1>Work</h1>`;
+    setMode()
   }
 }
-function setText(){
-  document.getElementById("timer").innerHTML = formatedTime();
+
+function setMode (){
+  audio.play();
+  timeLeft = modeWork ? countdownPause : countdownWork
+  endTime = new Date().getTime()+timeLeft
+  modeWork = !modeWork
 }
-function formatedTime(){
-  const minutes = parseInt(countdown/60)
-  let seconds = countdown%60
+
+function setTime(timeLeft){
+  const totalSeconds = parseInt((timeLeft)/1000)
+  let seconds = (totalSeconds)%60
+  let minutes = parseInt(totalSeconds/60)
+
   if (seconds<10){
     seconds = `0${seconds}`
   }
-  return `${minutes}:${seconds}`
+  if (minutes<10){
+    minutes = `0${minutes}`
+  }
+
+  document.getElementById("timer").innerHTML = `${minutes}:${seconds}`;
 }
